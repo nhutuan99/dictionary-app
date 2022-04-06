@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const Home = styled.div`
-display: 'flex`;
+  display: 'flex';
+`;
 
 const Div = styled.div`
   margin: 200px auto;
