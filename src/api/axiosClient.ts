@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: '',
+  baseURL: 'https://api.dictionaryapi.dev/api/v2/entries/en/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,30 +10,21 @@ const axiosClient = axios.create({
 //Interceptors
 // Add a request interceptor
 axiosClient.interceptors.request.use(
-  function (config) {
+  function(config) {
     return config;
   },
-  function (error) {
+  function(error) {
     return Promise.reject(error);
   }
 );
 
 // Add a response interceptor
 axiosClient.interceptors.response.use(
-  function (response) {
+  function(response) {
     // Do something with response data
     return response.data;
   },
-  function (error) {
-    // const { config, status, data } = error.response;
-    // const URLs = [
-    //   '',
-    //   ''
-    // ];
-    // if (URLs.includes(config.url) && status === 400) {
-    //   throw new Error(data.errorMessage);
-    // }
-
+  function(error) {
     return Promise.reject(error);
   }
 );

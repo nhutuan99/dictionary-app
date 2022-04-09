@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import Input from '../Input';
 
 const Home = styled.div`
   display: 'flex';
@@ -20,10 +21,19 @@ const WelCome = styled.h1`
 export interface HomeProps {}
 
 export default function HomePage(props: HomeProps) {
+  const [job, setJob] = React.useState('');
+  const [jobs, setJobs] = React.useState([] as any);
+  console.log(jobs);
+  const handleSubmit = () => {
+    setJobs((prev: any) => [...prev, job]);
+  };
+
   return (
     <Home>
       <Div>
-        <WelCome>Translate App - Coming Soon..</WelCome>
+        <WelCome>
+          <Input state={[]} />
+        </WelCome>
       </Div>
     </Home>
   );
