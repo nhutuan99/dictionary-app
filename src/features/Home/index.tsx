@@ -1,13 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Input from '../Input';
+import InputForm from '../Input/InputForm';
 
 const Home = styled.div`
   display: 'flex';
 `;
 
 const Div = styled.div`
-  margin: 200px auto;
   text-align: center;
 `;
 
@@ -21,18 +21,12 @@ const WelCome = styled.h1`
 export interface HomeProps {}
 
 export default function HomePage(props: HomeProps) {
-  const [job, setJob] = React.useState('');
-  const [jobs, setJobs] = React.useState([] as any);
-  console.log(jobs);
-  const handleSubmit = () => {
-    setJobs((prev: any) => [...prev, job]);
-  };
-
   return (
     <Home>
       <Div>
         <WelCome>
-          <Input state={[]} />
+          <InputForm onSubmit={undefined} form={{}} name={undefined} label={undefined} />
+          <Input state={[]}  />
         </WelCome>
       </Div>
     </Home>
