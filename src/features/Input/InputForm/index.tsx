@@ -5,7 +5,16 @@ import * as yup from 'yup';
 import { Button } from '@mui/material';
 import InputField from '../../../components/common/InputField';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
+const Container = styled.div`
+  @media (max-width: 768px) {
+    top: 50px;
+    left: 15px;
+    position: fixed;
+    margin-bottom: 100px;
+  }
+`;
 export interface InputFormProps {
   onSubmit: any;
   form: object;
@@ -40,10 +49,12 @@ export default function InputForm(props: InputFormProps): JSX.Element {
 
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>
-      <InputField name="inputWord" label="Word" form={form} />
-      <Button type="submit" variant="contained" color="warning" style={{ padding: '10px 20px', marginTop: '10px' }}>
-        Enter
-      </Button>
+      <Container>
+        <InputField name="inputWord" label="Word" form={form} />
+        <Button type="submit" variant="contained" color="warning" style={{ padding: '10px 20px', marginTop: '10px' }}>
+          Enter
+        </Button>
+      </Container>
     </form>
   );
 }
