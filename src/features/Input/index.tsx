@@ -16,6 +16,7 @@ const Container = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 0 10px;
+    height: 670px;
   }
 `;
 
@@ -28,13 +29,11 @@ const Row = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
-    max-height: 800px;
-    margin-top: '30px';
-    over-flow: 'hidden';
+    height: 670px;
+    margin-top: 150px;
+    over-flow: hidden;
   }
 `;
-
-const Content = styled.div``;
 
 export interface InputProps {
   state: [];

@@ -17,8 +17,7 @@ const HTML = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 800px;
-    max-height: 1000px;
+    height: 780px;
     over-flow: 'hidden';
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url(${bg});
     background-position: center;
