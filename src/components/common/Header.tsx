@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import avt from '../../assets/imgs/avt.png';
 
@@ -6,10 +7,12 @@ const HeaderStyle = styled.div`
   display: flex;
   width: 100%;
   height: 80px;
-  position: sticky;
   background: #000;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  zindex: 100;
 `;
 
 const Img = styled.img`
@@ -29,12 +32,14 @@ const Span = styled.span`
 export interface HeaderProps {}
 
 export function Header(props: HeaderProps) {
+  const navigate = useNavigate();
+
   return (
     <HeaderStyle>
       <>
-        <Img src={avt} alt="img-avt" />
+        <Img src={avt} alt="img-avt" onClick={() => navigate('/')} />
 
-        <Span>Dictionary App</Span>
+        <Span onClick={() => navigate('/')}>Dictionary App</Span>
       </>
     </HeaderStyle>
   );

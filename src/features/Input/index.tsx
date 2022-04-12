@@ -4,7 +4,34 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import fetchApi from '../../api/fetchData';
+import ReactAudioPlayer from 'react-audio-player';
+import styled from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: row;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 10px;
+  }
+`;
+
+const Row = styled.div`
+  margin: '50px auto';
+  width: 50%;
+  height: 500px;
+  overflow: auto;
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    margin-top: '30px';
+    over-flow: 'hidden';
+  }
+`;
 export interface InputProps {
   state: [];
   word?: any;
@@ -45,7 +72,7 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
     (async () => {
       try {
         setLoading(true);
-        const res: any = await fetchApi.getData(Object.values(param));
+        const res: any = await fetchApi.getData(state.length === 0 ? 'hello' : Object.values(param));
         console.log(res);
         setState(res);
         setLoading(false);
@@ -54,7 +81,7 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
       }
       setLoading(false);
     })();
-  }, [param]);
+  }, [param, state.length]);
 
   console.log(state);
 
@@ -73,7 +100,14 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
     <div>
       {loading ? (
         <CircularProgressWithLabel
-          style={{ margin: '50px auto', background: '#fff', padding: ' 20px', color: 'orange', opacity: '0.7' }}
+          style={{
+            margin: '50px auto',
+            background: '#fff',
+            padding: '20px',
+            color: 'orange',
+            opacity: '0.7',
+            fontSize: '30px',
+          }}
           value={progress}
         />
       ) : (
@@ -81,67 +115,124 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
           {state.length === 0 ? (
             ''
           ) : (
-            <div
-              style={{
-                margin: '30px auto',
-                width: '350px',
-                maxHeight: '300px',
-                borderRadius: '10px',
-                padding: '10px',
-                background: '#fff',
-              }}
-            >
-              {state.map((item, idx) => {
-                return (
-                  <Box key={idx}>
-                    <p
-                      style={{
-                        textAlign: 'center',
-                        color: '#000',
-                        margin: '5px 0',
-                        textShadow: '2px 2px rgba(0,0,0,0.5)',
-                      }}
-                    >
-                      {item.word}
+            <Container>
+              <Row>
+                {state.slice(0, 1).map((item, idx) => {
+                  return (
+                    <Box key={idx}>
+                      <p
+                        style={{
+                          textAlign: 'center',
+                          color: 'orange',
+                          margin: '5px 0',
+                          textShadow: '2px 2px rgba(0,0,0,0.5)',
+                        }}
+                      >
+                        {item.word}
+                        <div
+                          style={{
+                            textAlign: 'center',
+                            width: '100%',
+                            height: '2px',
+                            borderRadius: '1px',
+                            margin: '10px auto',
+                            backgroundColor: 'silver',
+                          }}
+                        ></div>
+                      </p>
+                      <Box>
+                        {item.phonetics.map((subItem: any, idx: React.Key | null | undefined) => {
+                          return (
+                            <Box>
+                              {subItem.text === '' || subItem.text === undefined || subItem.audio === '' ? (
+                                ''
+                              ) : (
+                                <>
+                                  <Typography style={{ fontSize: '14px', marginBottom: '10px', color: '#fff' }}>
+                                    {subItem.text}
+                                  </Typography>
+                                  <ReactAudioPlayer
+                                    key={idx}
+                                    style={{ fontSize: '10px' }}
+                                    src={subItem.audio}
+                                    controls
+                                  ></ReactAudioPlayer>
+                                </>
+                              )}
+                            </Box>
+                          );
+                        })}
+                      </Box>
                       <div
                         style={{
                           textAlign: 'center',
-                          width: '200px',
+                          width: '100%',
                           height: '2px',
                           borderRadius: '1px',
                           margin: '10px auto',
                           backgroundColor: 'silver',
                         }}
                       ></div>
-                    </p>
-                    <p>
-                      {item.meanings.map(
-                        (
-                          mean: {
-                            definitions: {
-                              definition:
-                                | boolean
-                                | React.ReactChild
-                                | React.ReactFragment
-                                | React.ReactPortal
-                                | null
-                                | undefined;
-                            };
-                          },
-                          idx: React.Key | null | undefined
-                        ) => {
+                      <Box>
+                        {item.meanings.map((subItem: any, idx: React.Key | null | undefined) => {
                           return (
                             <Box>
-                              <div key={idx}>{mean.definitions.definition}</div>
+                              <Typography
+                                style={{
+                                  width: '100px',
+                                  padding: '12px',
+                                  background: '#fff',
+                                  border: 'none',
+                                  outline: 'none',
+                                  color: 'green',
+                                  margin: '20px auto',
+                                  fontSize: '18px',
+                                  fontWeight: '550',
+                                  fontStyle: 'italic',
+                                  lineHeight: '0.1',
+                                  borderRadius: '20px',
+                                }}
+                              >
+                                {subItem.partOfSpeech}
+                              </Typography>
+                              <Box>
+                                {subItem.definitions.map((subDefinition: any, idx: React.Key | null | undefined) => {
+                                  return (
+                                    <>
+                                      <Typography
+                                        key={idx}
+                                        style={{ fontSize: '16px', marginBottom: '10px', color: '#fff' }}
+                                      >
+                                        {subDefinition.definition}
+                                      </Typography>
+                                      <Typography
+                                        key={idx}
+                                        style={{ fontSize: '16px', marginBottom: '10px', color: '#fff' }}
+                                      >
+                                        {subDefinition.example === '' || subDefinition.example === undefined ? (
+                                          ''
+                                        ) : (
+                                          <>
+                                            <span>Example : </span>
+                                            <span style={{ fontSize: '16px', marginBottom: '10px', color: 'yellow' }}>
+                                              {subDefinition.example}
+                                            </span>
+                                          </>
+                                        )}
+                                      </Typography>
+                                    </>
+                                  );
+                                })}
+                              </Box>
                             </Box>
                           );
-                        }
-                      )}
-                    </p>
-                  </Box>
-                );
-              })}
-            </div>
+                        })}
+                      </Box>
+                    </Box>
+                  );
+                })}
+              </Row>
+            </Container>
           )}
         </>
       )}

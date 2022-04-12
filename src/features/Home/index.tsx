@@ -5,6 +5,8 @@ import InputForm from '../Input/InputForm';
 
 const Home = styled.div`
   display: 'flex';
+  height: 86.58vh;
+  overflow: 'hidden';
 `;
 
 const Div = styled.div`
@@ -26,7 +28,7 @@ export default function HomePage(props: HomeProps) {
       <Div>
         <WelCome>
           <InputForm onSubmit={undefined} form={{}} name={undefined} label={undefined} />
-          <Input state={[]}  />
+          <Input state={[]} />
         </WelCome>
       </Div>
     </Home>

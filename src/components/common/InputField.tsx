@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   width: 350px;
-  margin-top: 100px;
-  margin-right: 10px;
+  margin-top: 30px;
   padding: 10px 20px;
   border: none;
   outline: none;
@@ -17,6 +16,10 @@ const Input = styled.input`
   &:focus {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.3);
     background: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: 768px) {
+    width: 300px;
   }
 `;
 
@@ -39,7 +42,7 @@ function InputField(props: { form: any; name: any; label: any }) {
           formState,
         }) => (
           <div>
-            <p style={{ color: 'orange', fontSize: '14px', padding: '5px' }}>{!!hasError && hasError}</p>
+            <p style={{ color: 'orange', fontSize: '14px' }}>{!!hasError && hasError}</p>
             <Input
               placeholder="Enter word here!"
               type="text"

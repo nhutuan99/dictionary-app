@@ -9,10 +9,20 @@ const HTML = styled.div`
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  height: 100vh;
+  overflow: 'hidden';
 
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url(${bg});
   background-position: center;
+  background-size: cover;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    over-flow: 'hidden';
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url(${bg});
+    background-position: center;
+    background-size: cover;
+  }
 `;
 
 function App() {

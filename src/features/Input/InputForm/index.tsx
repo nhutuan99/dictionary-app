@@ -22,7 +22,7 @@ export default function InputForm(props: InputFormProps): JSX.Element {
 
   const form = useForm({
     defaultValues: {
-      inputWord: '',
+      inputWord: 'hello',
     },
 
     resolver: yupResolver(schema),
@@ -41,7 +41,7 @@ export default function InputForm(props: InputFormProps): JSX.Element {
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>
       <InputField name="inputWord" label="Word" form={form} />
-      <Button type="submit" variant="contained" color="primary" style={{ padding: '10px 20px', marginTop: '10px' }}>
+      <Button type="submit" variant="contained" color="warning" style={{ padding: '10px 20px', marginTop: '10px' }}>
         Enter
       </Button>
     </form>
