@@ -28,10 +28,14 @@ const Row = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
+    max-height: 800px;
     margin-top: '30px';
     over-flow: 'hidden';
   }
 `;
+
+const Content = styled.div``;
+
 export interface InputProps {
   state: [];
   word?: any;
@@ -169,7 +173,7 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
                           width: '100%',
                           height: '2px',
                           borderRadius: '1px',
-                          margin: '10px auto',
+                          marginTop: '10px',
                           backgroundColor: 'silver',
                         }}
                       ></div>
