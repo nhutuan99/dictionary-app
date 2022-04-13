@@ -18,6 +18,12 @@ const Container = styled.div`
     padding: 0 10px;
     height: 670px;
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    height: 800px;
+    width: 100%;
+    overflow: 'hidden';
+  }
 `;
 
 const Row = styled.div`
@@ -30,7 +36,6 @@ const Row = styled.div`
     flex-direction: column;
     width: 100%;
     height: 670px;
-    margin-top: 150px;
     over-flow: hidden;
   }
 `;

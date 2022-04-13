@@ -7,6 +7,15 @@ const Home = styled.div`
   display: 'flex';
   height: 86.58vh;
   overflow: 'hidden';
+  @media (max-width: 768px) {
+    height: 800px;
+    overflow: 'hidden';
+  }
+
+  @media (min-width: 768px and max-width: 1023px) {
+    height: 2000px;
+    overflow: 'hidden';
+  }
 `;
 
 const Div = styled.div`

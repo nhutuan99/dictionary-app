@@ -9,10 +9,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   @media (max-width: 768px) {
-    top: 50px;
-    left: 15px;
-    position: fixed;
-    margin-bottom: 100px;
+    text-align: center;
   }
 `;
 export interface InputFormProps {

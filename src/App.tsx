@@ -17,10 +17,19 @@ const HTML = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 780px;
+    max-height: 1024px;
     over-flow: 'hidden';
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url(${bg});
-    background-position: center;
+    background-position: top;
+    background-size: cover;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    height: 1400px;
+    width: 100%;
+    overflow: 'hidden';
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url(${bg});
+    background-position: top;
     background-size: cover;
   }
 `;

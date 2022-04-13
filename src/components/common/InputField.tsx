@@ -20,6 +20,7 @@ const Input = styled.input`
 
   @media (max-width: 768px) {
     width: 300px;
+    position: sticky;
   }
 `;
 
