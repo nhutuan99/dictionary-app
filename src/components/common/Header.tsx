@@ -12,7 +12,6 @@ const HeaderStyle = styled.div`
   justify-content: center;
   position: sticky;
   top: 0;
-  zindex: 100;
 `;
 
 const Img = styled.img`
