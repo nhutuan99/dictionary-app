@@ -13,16 +13,13 @@ const Container = styled.div`
   align-items: center;
   margin: auto;
   flex-direction: row;
+
   @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 0 10px;
-    height: 670px;
+    margin-top: 130px;
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    height: 800px;
-    width: 100%;
-    overflow: 'hidden';
+    margin-top: 130px;
   }
 `;
 
@@ -32,11 +29,17 @@ const Row = styled.div`
   height: 500px;
   overflow: auto;
   flex-wrap: wrap;
+
   @media (max-width: 768px) {
     flex-direction: column;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    height: 670px;
-    over-flow: hidden;
+    max-height: 1024px;
+    over-flow: auto;
   }
 `;
 
@@ -73,6 +76,8 @@ function CircularProgressWithLabel(props: CircularProgressProps & { value: numbe
 // eslint-disable-next-line no-empty-pattern
 export default function Input({ state: [], word = '', partOfSpeech = '' }: InputProps) {
   const param = useParams();
+
+  console.log('param', param);
   const [state, setState] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -80,7 +85,9 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
     (async () => {
       try {
         setLoading(true);
-        const res: any = await fetchApi.getData(state.length === 0 ? 'hello' : Object.values(param));
+        const res: any = await fetchApi.getData(
+          Object.values(param) === undefined || '' || state.length === 0 ? 'hello' : Object.values(param)
+        );
         console.log(res);
         setState(res);
         setLoading(false);
@@ -89,9 +96,7 @@ export default function Input({ state: [], word = '', partOfSpeech = '' }: Input
       }
       setLoading(false);
     })();
-  }, [param, state.length]);
-
-  console.log(state);
+  }, [param]);
 
   const [progress, setProgress] = React.useState(50);
 

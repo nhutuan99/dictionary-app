@@ -12,6 +12,7 @@ const HeaderStyle = styled.div`
   justify-content: center;
   position: sticky;
   top: 0;
+  z-index: 100;
 `;
 
 const Img = styled.img`
@@ -37,7 +38,6 @@ export function Header(props: HeaderProps) {
     <HeaderStyle>
       <>
         <Img src={avt} alt="img-avt" onClick={() => navigate('/')} />
-
         <Span onClick={() => navigate('/')}>Dictionary App</Span>
       </>
     </HeaderStyle>
