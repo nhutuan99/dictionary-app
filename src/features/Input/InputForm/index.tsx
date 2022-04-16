@@ -7,11 +7,18 @@ import InputField from '../../../components/common/InputField';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Form = styled.div`
+  width: 100%;
   @media (max-width: 768px) {
     text-align: center;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
   }
 `;
+
 export interface InputFormProps {
   onSubmit: any;
   form: object;
@@ -45,13 +52,13 @@ export default function InputForm(props: InputFormProps): JSX.Element {
   };
 
   return (
-    <form onSubmit={form.handleSubmit(handleSubmit)}>
-      <Container>
+    <Form>
+      <form onSubmit={form.handleSubmit(handleSubmit)}>
         <InputField name="inputWord" label="Word" form={form} />
         <Button type="submit" variant="contained" color="warning" style={{ padding: '10px 20px', marginTop: '10px' }}>
           Enter
         </Button>
-      </Container>
-    </form>
+      </form>
+    </Form>
   );
 }
